@@ -13,7 +13,10 @@ const mongoose = require('mongoose');
 // API
 let UserAPIRouter = require('./routes/api/UserAPI')
 let NewsAPIRouter = require('./routes/api/NewsAPI')
+let SubjectsAPIRouter = require('./routes/api/SubjectsAPI')
+
 let SchedulesSubjectAPIRouter = require('./routes/api/SchedulesSubjectAPI')
+
 
 
 // CPANEL
@@ -43,6 +46,8 @@ app.use('/SchedulesSubject/api', SchedulesSubjectAPIRouter);
 //C Panel
 //http:localhost:3000/users
 app.use('/users', usersRouter);
+// http://localhost:3000/subjects/api
+app.use('/subjects/api',SubjectsAPIRouter)
 
 
 
