@@ -4,6 +4,7 @@ const addSchedule = async (idMon, Ca, DiaDiem, NgayHoc) => {
     try {
         return await SchedulesSubjectService.addSchedule(idMon, Ca, DiaDiem, NgayHoc);
     } catch (error) {
+        console.log(error);
         return false;
     }
 }
@@ -44,5 +45,5 @@ const getByTitle = async (title) => {
 }
 module.exports = {
     addSchedule, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById, getByTitle,
 };
