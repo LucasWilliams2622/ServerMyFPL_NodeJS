@@ -70,5 +70,5 @@ const updateById = async (id, tenmonhoc, gvdunglop, loaimon) => {
 
 module.exports = {
     addSubss, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById,
 }
