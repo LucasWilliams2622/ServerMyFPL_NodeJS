@@ -4,9 +4,15 @@ const ObjectId = Schema.ObjectId;
 
 const SubsSchema = new Schema({
     id: { type: ObjectId },
-    tenmonhoc: { type: String, require: true },
-    gvdunglop: { type: String, require: true },
-    loaimon: { type: String, require:true }
+    idMon:{type: String, require : true},
+    tenMon: { type: String, require: true },
+    phong:{type : String, require : true},
+    ca :{type:String, require: true},
+    thoigian:{type: Date, default: Date.now},
+    giangvien: { type: String, require: true },
+    buoi:{type:String, require:true},
+    diadiem:{type:String,require:true},
+
 
 });
 
