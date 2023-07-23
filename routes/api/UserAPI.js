@@ -31,7 +31,6 @@ router.post('/login', async (req, res, next) => {
 router.post('/loginGoogle', async (req, res, next) => {
     try {
         const { email, name, avatar } = req.body;
-
         const user = await userController.loginGoogle(email, name, avatar);
         if (user) {
             return res.status(200).json({ result: true, user: user, message: "Login Google Success" });
@@ -44,16 +43,16 @@ router.post('/loginGoogle', async (req, res, next) => {
 //http://localhost:3000/user/api/register
 router.post('/register', [], async (req, res, next) => {
     try {
-        const { email, password, name, description, avatar, role, createAt,
-            updateAt, isLogin, isActive, isVerified, verificationCode, isAble, limit } = req.body;
-        console.log(email, password, name, description, avatar, role, createAt,
-            updateAt, isLogin, isActive, isVerified, verificationCode)
-        const user = await userController.register(email, password, name, description, avatar, role, createAt,
-            updateAt, isLogin, isActive, isVerified, verificationCode, isAble, limit);
+        const { email, password, name,studentCode,  avatar, role, createAt,
+            updateAt,  isActive, isVerified } = req.body;
+        console.log(email, password, name, studentCode, avatar, role, createAt,
+            updateAt,  isActive, isVerified)
+        const user = await userController.register(email, password, name, studentCode, avatar, role, createAt,
+            updateAt,  isActive, isVerified );
         console.log(user)
 
         if (user) {
-            await userController.sendMailForNewAccount(email);
+            // await userController.sendMailForNewAccount(email);
             return res.status(200).json({ result: true, user: user, message: "Register Success" });
         }
         return res.status(400).json({ result: false, user: null, message: "Register Failed" });

@@ -9,17 +9,18 @@ const login = async (email, password) => {
         return false;
     }
 }
-const register = async (email, password, name, description, gender, dob, avatar, role, createAt, updateAt, isLogin) => {
+const register = async (email, password, name, studentCode, avatar, role, createAt, updateAt,  isActive, isVerified) => {
     try {
-        return await UserService.register(email, password, name, description, gender, dob, avatar, role, createAt, updateAt, isLogin);
+        console.log("aaaaaaaaaa");
+        return await UserService.register(email, password, name, studentCode, avatar, role, createAt, updateAt,  isActive, isVerified);
 
     } catch (error) {
         return false;
     }
 }
-const loginGoogle = async ( email, name, avatar) => {
+const loginGoogle = async (email, name, avatar) => {
     try {
-        return await UserService.loginGoogle( email, name, avatar);
+        return await UserService.loginGoogle(email, name, avatar);
     } catch (error) {
         return false;
     }
@@ -141,5 +142,5 @@ module.exports = {
     login, register, deleteUser,
     updateUser, getAllUser, search,
     changePassword, sendMail, sendVerifyCode,
-    verifyCode,loginGoogle,getById
+    verifyCode, loginGoogle, getById
 };

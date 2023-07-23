@@ -30,7 +30,19 @@ router.get('/get-by-id', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
-
+//http://localhost:3000/SchedulesSubject/api/get-by-current-day
+router.get('/get-by-current-day', async (req, res, next) => {
+    try {
+        const { currentDay } = req.query;
+        const SchedulesSubject = await scheController.getById(id);
+        if (SchedulesSubject) {
+            return res.status(200).json({ result: true, SchedulesSubject: SchedulesSubject, message: "Success" });
+        }
+        return res.status(400).json({ result: false, SchedulesSubject: null, message: "Failed" });
+    } catch (error) {
+        return res.status(500).json({ result: false, message: 'Error System' })
+    }
+});
 //http://localhost:3000/SchedulesSubject/api/add-schedule
 router.post('/add-schedule', async (req, res, next) => {
     try {

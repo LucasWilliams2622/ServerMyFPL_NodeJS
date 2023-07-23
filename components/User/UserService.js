@@ -15,19 +15,22 @@ const login = async (email, password) => {
     }
 }
 //http://localhost:3000/api/user/loginGoogle
-const loginGoogle = async (email, avatar, name) => {
+const loginGoogle = async (email, name, avatar) => {
     try {
         const user = await UserModel.findOne({ email: email })
-        if (user) {
-            // user.isLogin = true;
-            return user;
-        } else {
-            const newUser = { email, avatar, name };
+        console.log("===========",user);
+        if (user===null) {
+            const newUser = { email, name, avatar };
             const u = new UserModel(newUser);
             await u.save();
             user.isLogin = true;
-
+            console.log("Aaaaaaaaqweretfgfvsadfsgdha");
             return newUser;
+          
+        } else {
+             // user.isLogin = true;
+             console.log("Aaaaaaaaaaaaaaaaa");
+             return user;
         }
     } catch (error) {
         console.log('loginGoogle error' + error)
@@ -35,23 +38,19 @@ const loginGoogle = async (email, avatar, name) => {
     }
 }
 //http://localhost:3000/api/user/register
-const register = async (email, password, name, description, gender, dob, avatar, role, createAt, updateAt, isLogin) => {
+const register = async (email, password, name, studentCode, avatar, role, createAt, updateAt,  isActive, isVerified) => {
     try {
-
-        // console.log("QQQQ", email, password, name, description, gender, dob, avatar, role, createAt, updateAt, isLogin)
-
-
+        // console.log("QQQQ", email, password, name, avatar, studentCode, role, createAt, updateAt,  isActive, isVerified)
         const user = await UserModel.findOne({ email: email })
         // console.log("userrrr", user)
         if (user == null) {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
-
-            const newUser = { email, password: hash, name, description, gender, dob, avatar, role, createAt, updateAt, isLogin };
+            const newUser = { email, password: hash, name, avatar, studentCode, role, createAt, updateAt,  isActive, isVerified };
+            // console.log("--------->", newUser);
             const u = new UserModel(newUser);
             await u.save();
             return true;
-
         } else {
             return false;
         }
@@ -150,7 +149,7 @@ const changePassword = async (email, oldPassword, newPassword) => {
 
 const getById = async (id) => {
     try {
-        const user = await UserModel.findById({ _id:id });
+        const user = await UserModel.findById({ _id: id });
         if (user != null) {
             return user
         } return false

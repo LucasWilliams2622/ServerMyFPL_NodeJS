@@ -13,10 +13,10 @@ const userSchema = new Schema({
   id: { type: ObjectId },
   name: { type: String, },
   email: { type: String, default: "", unique: true },
-  password: { type: String, required: true },
+  password: { type: String, default:"123456abc"},
 
-  studentCode: { type: String, unique: true },
-  class: { type: String },
+  studentCode: { type: String,default:"PS24943" },
+  class: { type: String ,default:"CP17310"},
 
   gender: { type: Boolean, default: true },//true female false male
   dob: { type: Date, default: Date.now },
@@ -25,7 +25,6 @@ const userSchema = new Schema({
   updateAt: { type: Date, default: Date.now },
 
   role: { type: Number, default: 1 },
-  isLogin: { type: Boolean, default: false },
   isActive: { type: Boolean, default: true },
   isVerified: { type: Boolean, default: false },
   // verificationCode: { type: String },
