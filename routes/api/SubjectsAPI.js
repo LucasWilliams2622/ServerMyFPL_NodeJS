@@ -6,7 +6,7 @@ const SubController = require('../../components/Subjects/SubController')
 router.post('/add-sub', async (req, res, next) => {
     try {
         const { tenmonhoc, gvdunglop, loaimon } = req.body;
-        const subs = await SubController.addSub(tenmonhoc, gvdunglop, loaimon);
+        const subs = await SubController.addSub(idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem);
         if (subs) {
             return res.status(200).json({ result: true, subs: subs, message: "Add subject Success" });
         }
@@ -74,7 +74,7 @@ router.put('/update-by-id', async (req, res, next) => {
         const {tenmonhoc,gvdunglop,loaimon } = req.body;
 
         console.log(id);
-        const subs = await SubController.updateById(id,tenmonhoc,gvdunglop,loaimon);
+        const subs = await SubController.updateById(id,idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem);
         if (subs) {
             return res.status(200).json({ result: true, message: "Success" });
         }
@@ -87,7 +87,7 @@ router.put('/update-by-id', async (req, res, next) => {
 
 
 
-//â
+
 
 
 module.exports = router;

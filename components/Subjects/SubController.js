@@ -1,8 +1,8 @@
 const SubsService = require('./SubjectService');
 
-const addSub = async (tenmonhoc, gvdunglop, loaimon) => {
+const addSub = async (idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem) => {
     try {
-        return await SubsService.addSub(tenmonhoc, gvdunglop, loaimon);
+        return await SubsService.addSub(idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem);
     } catch (error) {
         return false;
     }
@@ -28,9 +28,9 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id,tenmonhoc,gvdunglop,loaimon) => {
+const updateById = async (id,idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem) => {
     try {
-        return await SubsService.updateById(id,tenmonhoc,gvdunglop,loaimon);
+        return await SubsService.updateById(id,idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem);
     } catch (error) {
         return false;
     }

@@ -1,9 +1,9 @@
 const subsModel = require('./SubjectModel')
 
-const addSubss = async (tenmonhoc, gvdunglop, loaimon) => {
+const addSubss = async (idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem) => {
     try {
         const subs = {
-            tenmonhoc, gvdunglop, loaimon
+            idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem
         }
         const p = new subsModel(subs);
         await p.save();
@@ -52,13 +52,19 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id, tenmonhoc, gvdunglop, loaimon) => {
+const updateById = async (id,idMon,tenMon,phong,lop,ca,thoigian,giangvien,buoi,diadiem) => {
     try {
         const subs = await subsModel.findById(id)
         if (subs) {
-            subs.tenmonhoc = tenmonhoc ? tenmonhoc : subs.tenmonhoc;
-            subs.gvdunglop = gvdunglop ? gvdunglop : subs.gvdunglop;
-            subs.loaimon = loaimon ? loaimon : subs.loaimon;
+            subs.idMon = idMon ? idMon : subs.idMon;
+            subs.tenMon = tenMon ? tenMon : subs.tenMon;
+            subs.phong = phong ? phong : subs.phong;
+            subs.lop = lop ? lop : subs.lop;
+            subs.ca = ca ? ca : subs.ca;
+            subs.thoigian = thoigian ? thoigian : subs.thoigian;
+            subs.giangvien = giangvien ? giangvien : subs.giangvien;
+            subs.buoi = buoi ? buoi : subs.buoi;
+            subs.diadiem = diadiem ? diadiem : subs.diadiem;
             await subs.save();
             return true;
         }
