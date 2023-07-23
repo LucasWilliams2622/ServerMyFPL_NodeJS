@@ -1,10 +1,10 @@
 const SchedulesSubjectModel = require('./SchedulesSubjectModel')
 //const SubjectsModel = require()
 
-const addSchedule = async (idMon, Ca, DiaDiem, NgayHoc) => {
+const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
     try {
         const SchedulesSubject = {
-            idMon, Ca, DiaDiem, NgayHoc
+            idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong
         }
         //const mh = new 
         const p = new SchedulesSubjectModel(SchedulesSubject);
@@ -26,7 +26,7 @@ const getById = async (id) => {
 }
 const getByTitle = async (title) => {
     try {
-        const SchedulesSubject =await SchedulesSubjectModel.find({ title: { $regex: title, $options: 'i' }, });
+        const SchedulesSubject = await SchedulesSubjectModel.find({ title: { $regex: title, $options: 'i' }, });
         if (SchedulesSubject.length === 0) {
             return false
         }
@@ -37,8 +37,11 @@ const getByTitle = async (title) => {
     }
 }
 
+
 const getAll = async () => {
     try {
+        const res = await SchedulesSubjectModel.find()
+        console.log('res>>>>>', res)
         return SchedulesSubjectModel.find()
     } catch (error) {
         console.log('error: ', error);
@@ -53,15 +56,19 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id, idMon, Ca, DiaDiem, NgayHoc) => {
+const updateById = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
     try {
         const SchedulesSubject = await SchedulesSubjectModel.findById(id)
-        
+
         if (SchedulesSubject) {
             SchedulesSubject.idMon = idMon ? idMon : SchedulesSubject.idMon;
             SchedulesSubject.Ca = Ca ? Ca : SchedulesSubject.Ca;
+            SchedulesSubject.Phong = Phong ? Phong : SchedulesSubject.Phong;
             SchedulesSubject.DiaDiem = DiaDiem ? DiaDiem : SchedulesSubject.DiaDiem;
-            SchedulesSubject.NgayHoc = NgayHoc ? NgayHoc : SchedulesSubject.NgayHoc;
+            SchedulesSubject.GiangVien = GiangVien ? GiangVien : SchedulesSubject.GiangVien;
+            SchedulesSubject.ThoiGian = ThoiGian ? ThoiGian : SchedulesSubject.ThoiGian;
+            SchedulesSubject.TenMon = TenMon ? TenMon : SchedulesSubject.TenMon;
+            SchedulesSubject.Buoi = Buoi ? Buoi : SchedulesSubject.Buoi;
             await SchedulesSubject.save();
             return true;
         }
@@ -73,5 +80,5 @@ const updateById = async (id, idMon, Ca, DiaDiem, NgayHoc) => {
 
 module.exports = {
     addSchedule, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById, getByTitle,
 }

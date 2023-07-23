@@ -6,6 +6,7 @@ const scheController = require('../../components/SchedulesSubject/SchedulesSubje
 router.get('/get-all', async (req, res, next) => {
     try {
         const SchedulesSubject = await scheController.getAll();
+        console.log("======>",SchedulesSubject);
         if (SchedulesSubject) {
            // console.log("SchedulesSubject +>>>>>> ", SchedulesSubject);
             return res.status(200).json({ result: true, SchedulesSubject: SchedulesSubject, message: "Success" });
@@ -34,8 +35,8 @@ router.get('/get-by-id', async (req, res, next) => {
 //http://localhost:3000/SchedulesSubject/api/add-schedule
 router.post('/add-schedule', async (req, res, next) => {
     try {
-        const { idMon, Ca, DiaDiem, NgayHoc} = req.body;
-        const SchedulesSubject = await scheController.addSchedule(idMon, Ca, DiaDiem, NgayHoc);
+        const { idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong} = req.body;
+        const SchedulesSubject = await scheController.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
         if (SchedulesSubject) {
             return res.status(200).json({ result: true, SchedulesSubject: SchedulesSubject, message: "Add SchedulesSubject Success" });
         }
@@ -49,10 +50,10 @@ router.post('/add-schedule', async (req, res, next) => {
 router.put('/update-by-id', async (req, res, next) => {
     try {
         const { id } = req.query;
-        const { idMon, Ca, DiaDiem, NgayHoc } = req.body;
+        const { idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong } = req.body;
 
         console.log(id);
-        const SchedulesSubject = await scheController.updateById( id, idMon, Ca, DiaDiem, NgayHoc);
+        const SchedulesSubject = await scheController.updateById( idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
         if (SchedulesSubject) {
             return res.status(200).json({ result: true, message: "Success" });
         }
