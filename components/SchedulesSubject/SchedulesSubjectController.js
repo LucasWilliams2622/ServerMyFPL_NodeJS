@@ -1,9 +1,10 @@
 const SchedulesSubjectService = require('./SchedulesSubjectService');
 
-const addSchedule = async (idMon, Ca, DiaDiem, NgayHoc) => {
+const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
     try {
-        return await SchedulesSubjectService.addSchedule(idMon, Ca, DiaDiem, NgayHoc);
+        return await SchedulesSubjectService.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
     } catch (error) {
+        console.log(error);
         return false;
     }
 }
@@ -28,9 +29,9 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id, idMon, Ca, DiaDiem, NgayHoc) => {
+const updateById = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
     try {
-        return await SchedulesSubjectService.updateById(id, idMon, Ca, DiaDiem, NgayHoc);
+        return await SchedulesSubjectService.updateById(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
     } catch (error) {
         return false;
     }
@@ -44,5 +45,5 @@ const getByTitle = async (title) => {
 }
 module.exports = {
     addSchedule, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById, getByTitle,
 };

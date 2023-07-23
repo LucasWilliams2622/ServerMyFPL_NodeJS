@@ -4,11 +4,14 @@ const ObjectId = Schema.ObjectId;
 
 const SchedulesSubjectSchema = new Schema({
     id: { type: ObjectId },
-    idMon: { type: String, require: true },
-    Ca: { type: String, require: true },
+    idMon: { type: ObjectId, ref:"subjects" },
+    TenMon: { type: String, require: true },
+    Phong: { type: String, require: true },
+    Buoi: { type: String, require: true },
+    Ca: { type: Number, require: true },
     DiaDiem: {type: String, require: true},
-    NgayHoc: { type: Date, default: Date.now }
+    ThoiGian: { type: String, require: true}
     
 });
 
-module.exports = mongoose.models.SchedulesSubject|| mongoose.model('SchedulesSubject', SchedulesSubjectSchema);
+module.exports = mongoose.models.SchedulesSubjects|| mongoose.model('SchedulesSubjects', SchedulesSubjectSchema);
