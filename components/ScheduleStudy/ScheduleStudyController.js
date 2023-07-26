@@ -43,8 +43,14 @@ const getByCurrentDay = async (currentDay) => {
         return false;
     }
 }
-
+const getBy7Day = async (currentDay) => {
+    try {
+        return await ScheduleStudyService.getBy7Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
 module.exports = {
     addNew, getById, getAll, deleteById,
-    updateById,getByCurrentDay
+    updateById,getByCurrentDay,getBy7Day
 };
