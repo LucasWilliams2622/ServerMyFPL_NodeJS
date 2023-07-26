@@ -1,8 +1,8 @@
 const newsService = require('./NewsService');
 
-const addNew = async (title, content, date) => {
+const addNew = async (title, content,author, date,image) => {
     try {
-        return await newsService.addNew(title, content, date);
+        return await newsService.addNew(title, content,author, date,image);
     } catch (error) {
         return false;
     }
@@ -28,9 +28,9 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id,title,content,date) => {
+const updateById = async (id,title,content,author,date) => {
     try {
-        return await newsService.updateById(id,title,content,date);
+        return await newsService.updateById(id,title,content,author,date);
     } catch (error) {
         return false;
     }
