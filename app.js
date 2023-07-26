@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 // session,cookies
 const session = require('express-session');
@@ -34,8 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
 
 // API 
 // http://localhost:3000/user/api
@@ -69,7 +66,6 @@ mongoose.connect('mongodb+srv://nguyenvanson2622003:abc123456@cluster0.iuwkypv.m
 })
   .then(() => console.log('>>>>>>>>>> DB Connected!!!!!!'))
   .catch(err => console.log('>>>>>>>>> DB Error: ', err));
-app.use('/', indexRouter);
 
 
 

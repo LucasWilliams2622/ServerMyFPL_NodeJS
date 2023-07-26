@@ -44,7 +44,8 @@ router.get('/get-by-title', async (req, res, next) => {
 //http://localhost:3000/news/api/get-all
 router.get('/get-all', async (req, res, next) => {
     try {
-        const news = await newsController.getAll();
+        const {createAt}=req.query;
+        const news = await newsController.getAll(createAt)
         if (news) {
             return res.status(200).json({ result: true, news: news, message: "Success" });
         }

@@ -36,9 +36,9 @@ const getByTitle = async (title) => {
     }
 }
 
-const getAll = async () => {
+const getAll = async (createAt) => {
     try {
-        return newsModel.find()
+        return newsModel.find().skip(0).sort({content:-1})
     } catch (error) {
         console.log('error: ', error);
         return false;

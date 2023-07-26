@@ -14,9 +14,9 @@ const getById = async (id) => {
         return false;
     }
 }
-const getAll = async () => {
+const getAll = async (createAt) => {
     try {
-        return await newsService.getAll();
+        return await newsService.getAll(createAt);
     } catch (error) {
         return false;
     }

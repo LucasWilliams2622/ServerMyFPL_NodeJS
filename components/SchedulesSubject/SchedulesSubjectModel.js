@@ -5,6 +5,7 @@ const ObjectId = Schema.ObjectId;
 const SchedulesSubjectSchema = new Schema({
     id: { type: ObjectId },
     idMon: { type: ObjectId, ref:"subjects" },
+    
     TenMon: { type: String, require: true },
     Phong: { type: String, require: true },
     Buoi: { type: String, require: true },
