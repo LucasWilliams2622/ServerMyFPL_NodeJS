@@ -10,7 +10,8 @@ const SchedulesSubjectSchema = new Schema({
     Buoi: { type: String, require: true },
     Ca: { type: Number, require: true },
     DiaDiem: {type: String, require: true},
-    ThoiGian: { type: String, require: true}
+    ThoiGian: { type: String, require: true},
+    Ngay: { type: Date, require: true}
     
 });
 

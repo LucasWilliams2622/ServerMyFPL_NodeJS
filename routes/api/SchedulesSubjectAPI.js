@@ -31,11 +31,11 @@ router.get('/get-by-id', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
-//http://localhost:3000/SchedulesSubject/api/get-by-current-day
+//http://localhost:3000/SchedulesSubject/api/get-by-current-day?start_date=26/07/2023&end_date=30/07/2023
 router.get('/get-by-current-day', async (req, res, next) => {
     try {
-        const { currentDay } = req.query;
-        const SchedulesSubject = await scheController.getById(id);
+        const { start_date, end_date } = req.query;
+        const SchedulesSubject = await scheController.getScheduleByCurrentDay(start_date, end_date);
         if (SchedulesSubject) {
             return res.status(200).json({ result: true, SchedulesSubject: SchedulesSubject, message: "Success" });
         }
@@ -47,8 +47,9 @@ router.get('/get-by-current-day', async (req, res, next) => {
 //http://localhost:3000/SchedulesSubject/api/add-schedule
 router.post('/add-schedule', async (req, res, next) => {
     try {
-        const { idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong} = req.body;
-        const SchedulesSubject = await scheController.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
+        console.log('add-schedule', req.body);
+        const { idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay} = req.body;
+        const SchedulesSubject = await scheController.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay);
         if (SchedulesSubject) {
             return res.status(200).json({ result: true, SchedulesSubject: SchedulesSubject, message: "Add SchedulesSubject Success" });
         }
@@ -89,5 +90,7 @@ router.delete('/delete-by-id', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
+
 
 module.exports = router;

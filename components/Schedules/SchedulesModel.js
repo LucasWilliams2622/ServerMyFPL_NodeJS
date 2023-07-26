@@ -4,10 +4,14 @@ const ObjectId = Schema.ObjectId;
 
 const schedulesSchema = new Schema({
     id: { type: ObjectId },
-    subject: { type: String, require: true },
-    location: { type: String, require: true },
-    shift: { type: String, require: true },
-    date: { type: Date, default: Date.now }
+    idMon: { type: ObjectId, ref:"subjects" },
+    TenMon: { type: String, require: true },
+    Phong: { type: String, require: true },
+    Buoi: { type: String, require: true },
+    Ca: { type: Number, require: true },
+    DiaDiem: {type: String, require: true},
+    ThoiGian: { type: Date, require: true},
+    Ngay: { type: Date, require: true},
     
 });
 

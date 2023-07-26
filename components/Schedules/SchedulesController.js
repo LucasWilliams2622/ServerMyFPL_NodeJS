@@ -1,48 +1,57 @@
 const scheduleService = require('./SchedulesService');
 
-const addSchedule = async (subject,location,shift,date) => {
+const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay) => {
     try {
-        return await newsService.addSchedule(subject, location, shift,date);
+        console.log('<><><><><><><>');
+        return await scheduleService.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay);
     } catch (error) {
         return false;
     }
 }
 const getById = async (id) => {
     try {
-        return await newsService.getById(id);
+        return await scheduleService.getById(id);
     } catch (error) {
         return false;
     }
 }
 const getAll = async () => {
     try {
-        return await newsService.getAll();
+        return await scheduleService.getAll();
     } catch (error) {
         return false;
     }
 }
 const deleteById = async (id) => {
     try {
-        return await newsService.deleteById(id);
+        return await scheduleService.deleteById(id);
     } catch (error) {
         return false;
     }
 }
-const updateById = async (id,subject,location,shift,date) => {
+const updateById = async (id,idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay) => {
     try {
-        return await newsService.updateById(id,subject,location,shift,date);
+        return await scheduleService.updateById(id,idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong, Ngay);
     } catch (error) {
         return false;
     }
 }
 const getBysubject = async (subject) => {
     try {
-        return await newsService.getByTitle(subject);
+        return await scheduleService.getByTitle(subject);
     } catch (error) {
         return false;
     }
 }
+const getScheduleByCurrentDay = async (start_date, end_date) => {
+    try {
+        return await SchedulesSubjectService.getScheduleByCurrentDay(start_date, end_date);
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+};
 module.exports = {
-    addNew: addSchedule, getById, getAll, deleteById,
-    updateById,getBysubject,
+     addSchedule, getById, getAll, deleteById,
+    updateById,getBysubject,getScheduleByCurrentDay
 };
