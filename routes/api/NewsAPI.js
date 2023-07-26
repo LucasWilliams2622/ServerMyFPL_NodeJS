@@ -1,12 +1,20 @@
 var express = require('express');
 var router = express.Router();
 const newsController = require('../../components/News/NewsController')
+const upLoadImage = require("../../MiddleWare/UpLoadImage")
+
 
 //http://localhost:3000/news/api/add-new
-router.post('/add-new', async (req, res, next) => {
+router.post('/add-new', [upLoadImage.single('image')], async (req, res, next) => {
     try {
-        const { title, content, date } = req.body;
-        const news = await newsController.addNew(title, content, date);
+        let { body, file } = req;
+        if (file) {
+            file = `http://10.0.2.2:3000/images/${file.filename}`;
+            body = { ...body, image: file };
+        }
+        const { title, content,author, date ,image} = req.body;
+        console.log("++++>",title, content,author, date ,image);
+        const news = await newsController.addNew(title, content,author, date,image);
         if (news) {
             return res.status(200).json({ result: true, news: news, message: "Add New Success" });
         }
@@ -71,10 +79,10 @@ router.delete('/delete-by-id', async (req, res, next) => {
 router.put('/update-by-id', async (req, res, next) => {
     try {
         const { id } = req.query;
-        const { title,content,date } = req.body;
+        const { title,content,author,date } = req.body;
 
         console.log(id);
-        const news = await newsController.updateById(id,title,content,date);
+        const news = await newsController.updateById(id,title,content,author,date);
         if (news) {
             return res.status(200).json({ result: true, message: "Success" });
         }
