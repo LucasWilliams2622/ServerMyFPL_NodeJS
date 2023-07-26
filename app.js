@@ -10,17 +10,23 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 
 // API
+// http://localhost:3000/user/api
 let UserAPIRouter = require('./routes/api/UserAPI')
+
+// http://localhost:3000/news/api
 let NewsAPIRouter = require('./routes/api/NewsAPI')
-let SubjectsAPIRouter = require('./routes/api/SubjectsAPI')
 
-let SchedulesSubjectAPIRouter = require('./routes/api/SchedulesSubjectAPI')
-let SchedulesAPIRouter = require('./routes/api/SchedulesAPI')
+//http://localhost:3000/subject/api
+let SubjectAPIRouter = require('./routes/api/SubjectAPI')
 
+//http://localhost:3000/scheduleStudy/api
+let ScheduleStudyAPIRouter = require('./routes/api/ScheduleStudyAPI')
+
+//http://localhost:3000/scheduleExam/api
+let ScheduleExamAPIRouter = require('./routes/api/ScheduleExamAPI')
 
 
 // CPANEL
-
 
 var app = express();
 
@@ -37,17 +43,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API 
 // http://localhost:3000/user/api
 app.use('/user/api', UserAPIRouter);
+
 // http://localhost:3000/news/api
 app.use('/news/api', NewsAPIRouter);
-//http://localhost:3000/SchedulesSubject/api
-app.use('/SchedulesSubject/api', SchedulesSubjectAPIRouter);
-//http://localhost:3000/Schedules/api
-app.use('/Schedules/api', SchedulesAPIRouter);
+
+//http://localhost:3000/scheduleStudy/api
+app.use('/scheduleStudy/api', ScheduleStudyAPIRouter);
+
+//http://localhost:3000/scheduleExam/api
+app.use('/scheduleExam/api', ScheduleExamAPIRouter);
+
+// http://localhost:3000/subject/api
+app.use('/subject/api',SubjectAPIRouter)
+
 //C Panel
 //http:localhost:3000/users
 app.use('/users', usersRouter);
-// http://localhost:3000/subjects/api
-app.use('/subjects/api',SubjectsAPIRouter)
+
 
 
 

@@ -13,13 +13,14 @@ const userSchema = new Schema({
   id: { type: ObjectId },
   name: { type: String, },
   email: { type: String, default: "", unique: true },
-  password: { type: String, default:"123456abc"},
+  password: { type: String, default: "123456abc" },
 
-  studentCode: { type: String,default:"PS24943" },
-  class: { type: String ,default:"CP17310"},
-
+  studentCode: { type: String, default: "PS24943" },//MSSV
+  class: { type: String, default: "CP17310" },//lop
+  period: { type: Number, default: 1 },//ki
   gender: { type: Boolean, default: true },//true female false male
-  dob: { type: Date, default: Date.now },
+  
+  dob: { type: Date, default: Date.now },// ngay sinh
   avatar: { type: String, default: "" },
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
