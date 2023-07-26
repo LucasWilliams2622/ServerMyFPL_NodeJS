@@ -1,8 +1,8 @@
-const SchedulesSubjectService = require('./SchedulesSubjectService');
+const ScheduleStudyService = require('./ScheduleStudyService');
 
-const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
+const addNew = async (idSubject, shift, location, time, date, lesson) => {
     try {
-        return await SchedulesSubjectService.addSchedule(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
+        return await ScheduleStudyService.addNew(idSubject, shift, location, time, date, lesson);
     } catch (error) {
         console.log(error);
         return false;
@@ -10,40 +10,41 @@ const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon
 }
 const getById = async (id) => {
     try {
-        return await SchedulesSubjectService.getById(id);
+        return await ScheduleStudyService.getById(id);
     } catch (error) {
         return false;
     }
 }
 const getAll = async () => {
     try {
-        return await SchedulesSubjectService.getAll();
+        return await ScheduleStudyService.getAll();
     } catch (error) {
         return false;
     }
 }
 const deleteById = async (id) => {
     try {
-        return await SchedulesSubjectService.deleteById(id);
+        return await ScheduleStudyService.deleteById(id);
     } catch (error) {
         return false;
     }
 }
-const updateById = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
+const updateById = async (id,idSubject, shift, location, time, date, lesson) => {
     try {
-        return await SchedulesSubjectService.updateById(idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong);
+        return await ScheduleStudyService.updateById(id,idSubject, shift, location, time, date, lesson);
     } catch (error) {
         return false;
     }
 }
-const getByTitle = async (title) => {
+const getByCurrentDay = async (currentDay) => {
     try {
-        return await SchedulesSubjectService.getByTitle(title);
+        return await ScheduleStudyService.getByCurrentDay(currentDay);
     } catch (error) {
         return false;
     }
 }
+
 module.exports = {
-    addSchedule, getById, getAll, deleteById,
-    updateById, getByTitle,
+    addNew, getById, getAll, deleteById,
+    updateById,getByCurrentDay
 };

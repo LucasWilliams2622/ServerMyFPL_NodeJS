@@ -11,8 +11,6 @@ const scheduleStudySchema = new Schema({
     date: { type: Date, default: Date.now },//ngay
     lesson: { type: Number, default: 1 },// buoi thứ
 
-
-
 });
 
 module.exports = mongoose.models.scheduleStudy || mongoose.model('ScheduleStudy', scheduleStudySchema);

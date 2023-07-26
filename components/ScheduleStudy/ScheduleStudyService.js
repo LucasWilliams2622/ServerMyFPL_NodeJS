@@ -1,13 +1,12 @@
-const SchedulesSubjectModel = require('./SchedulesSubjectModel')
-//const SubjectsModel = require()
+const ScheduleStudyModel = require('./ScheduleStudyModel')
 
-const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
+const addNew = async (idSubject, shift, location, time, date, lesson) => {
     try {
         const SchedulesSubject = {
-            idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong
+            idSubject, shift, location, time, date, lesson
         }
         //const mh = new 
-        const p = new SchedulesSubjectModel(SchedulesSubject);
+        const p = new ScheduleStudyModel(SchedulesSubject);
         await p.save();
         return true;
     } catch (error) {
@@ -18,15 +17,15 @@ const addSchedule = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon
 const getById = async (id) => {
     try {
 
-        return SchedulesSubjectModel.findById(id);
+        return ScheduleStudyModel.findById(id);
     } catch (error) {
         console.log('error: ', error);
         return false;
     }
 }
-const getByTitle = async (title) => {
+const getByCurrentDay = async (currentDay) => {
     try {
-        const SchedulesSubject = await SchedulesSubjectModel.find({ title: { $regex: title, $options: 'i' }, });
+        const SchedulesSubject = await ScheduleStudyModel.find({ date: currentDay});
         if (SchedulesSubject.length === 0) {
             return false
         }
@@ -40,9 +39,9 @@ const getByTitle = async (title) => {
 
 const getAll = async () => {
     try {
-        const res = await SchedulesSubjectModel.find()
+        const res = await ScheduleStudyModel.find()
         console.log('res>>>>>', res)
-        return SchedulesSubjectModel.find()
+        return ScheduleStudyModel.find()
     } catch (error) {
         console.log('error: ', error);
         return false;
@@ -50,25 +49,23 @@ const getAll = async () => {
 }
 const deleteById = async (id) => {
     try {
-        return SchedulesSubjectModel.findOneAndDelete({ _id: id })
+        return ScheduleStudyModel.findOneAndDelete({ _id: id })
     } catch (error) {
         console.log('error: ', error);
         return false;
     }
 }
-const updateById = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon, Phong) => {
+const updateById = async (id,idSubject, shift, location, time, date, lesson) => {
     try {
-        const SchedulesSubject = await SchedulesSubjectModel.findById(id)
+        const SchedulesSubject = await ScheduleStudyModel.findById(id)
 
         if (SchedulesSubject) {
-            SchedulesSubject.idMon = idMon ? idMon : SchedulesSubject.idMon;
-            SchedulesSubject.Ca = Ca ? Ca : SchedulesSubject.Ca;
-            SchedulesSubject.Phong = Phong ? Phong : SchedulesSubject.Phong;
-            SchedulesSubject.DiaDiem = DiaDiem ? DiaDiem : SchedulesSubject.DiaDiem;
-            SchedulesSubject.GiangVien = GiangVien ? GiangVien : SchedulesSubject.GiangVien;
-            SchedulesSubject.ThoiGian = ThoiGian ? ThoiGian : SchedulesSubject.ThoiGian;
-            SchedulesSubject.TenMon = TenMon ? TenMon : SchedulesSubject.TenMon;
-            SchedulesSubject.Buoi = Buoi ? Buoi : SchedulesSubject.Buoi;
+            SchedulesSubject.idSubject = idSubject ? idSubject : SchedulesSubject.idSubject;
+            SchedulesSubject.shift = shift ? shift : SchedulesSubject.shift;
+            SchedulesSubject.location = location ? location : SchedulesSubject.location;
+            SchedulesSubject.time = time ? time : SchedulesSubject.time;
+            SchedulesSubject.date = date ? date : SchedulesSubject.date;
+            SchedulesSubject.lesson = lesson ? lesson : SchedulesSubject.lesson;
             await SchedulesSubject.save();
             return true;
         }
@@ -79,6 +76,6 @@ const updateById = async (idMon, Ca, DiaDiem, Buoi, GiangVien, ThoiGian, TenMon,
 }
 
 module.exports = {
-    addSchedule, getById, getAll, deleteById,
-    updateById, getByTitle,
+    addNew, getById, getAll, deleteById,
+    updateById, getByCurrentDay
 }

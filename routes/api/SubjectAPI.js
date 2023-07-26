@@ -14,6 +14,7 @@ router.get('/get-all', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
 //http://localhost:3000/subject/api/add-new
 router.post('/add-new', async (req, res, next) => {
     try {
@@ -27,6 +28,7 @@ router.post('/add-new', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
 //http://localhost:3000/subject/api/get-by-id
 router.get('/get-by-id', async (req, res, next) => {
     try {
@@ -40,6 +42,7 @@ router.get('/get-by-id', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
 //http://localhost:3000/subject/api/get-by-name-subject
 router.get('/get-by-name-subject', async (req, res, next) => {
     try {
@@ -68,6 +71,7 @@ router.delete('/delete-by-id', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
 //http://localhost:3000/subject/api/update-by-id
 router.put('/update-by-id', async (req, res, next) => {
     try {
