@@ -35,15 +35,17 @@ const getById = async (id) => {
 }
 const getByCurrentDay = async (currentDay) => {
     try {
-
         const startDate = currentDay + 'T00:00:00.000Z';
         const endDate = currentDay + 'T23:59:59.999Z';
+        console.log(startDate);
+        console.log(endDate);
+
         return await ScheduleStudyModel.find({
             date: {
                 $gte: startDate,
                 $lte: endDate,
             },
-        }).populate('idSubject', 'nameSubject codeSubject instructor');
+        }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
     } catch (error) {
         console.log('error: ', error);
         return false;
@@ -63,7 +65,7 @@ const getBy7Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
                 console.log(schedules.length);
                 return schedules;
             } else {
@@ -73,7 +75,7 @@ const getBy7Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             }
@@ -83,7 +85,7 @@ const getBy7Day = async (currentDay) => {
                     $gte: startDate,
                     $lte: endDate,
                 },
-            });
+            }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
             console.log(schedules.length);
             return schedules;
         }
@@ -105,7 +107,7 @@ const getBy14Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             } else {
@@ -115,7 +117,7 @@ const getBy14Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             }
@@ -125,7 +127,7 @@ const getBy14Day = async (currentDay) => {
                     $gte: startDate,
                     $lte: endDate,
                 },
-            });
+            }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
             console.log(schedules.length);
             return schedules;
         }
@@ -147,7 +149,7 @@ const getBy30Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             } else {
@@ -157,7 +159,7 @@ const getBy30Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             }
@@ -167,7 +169,7 @@ const getBy30Day = async (currentDay) => {
                     $gte: startDate,
                     $lte: endDate,
                 },
-            });
+            }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
             console.log(schedules.length);
             return schedules;
         }
@@ -189,7 +191,7 @@ const getBy60Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             } else {
@@ -199,7 +201,7 @@ const getBy60Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             }
@@ -209,7 +211,7 @@ const getBy60Day = async (currentDay) => {
                     $gte: startDate,
                     $lte: endDate,
                 },
-            });
+            }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
             console.log(schedules.length);
             return schedules;
         }
@@ -231,7 +233,7 @@ const getBy90Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             } else {
@@ -241,7 +243,7 @@ const getBy90Day = async (currentDay) => {
                         $gte: startDate,
                         $lte: endDate,
                     },
-                });
+                }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
                 console.log(schedules.length);
                 return schedules;
             }
@@ -251,7 +253,7 @@ const getBy90Day = async (currentDay) => {
                     $gte: startDate,
                     $lte: endDate,
                 },
-            });
+            }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
             console.log(schedules.length);
             return schedules;
         }

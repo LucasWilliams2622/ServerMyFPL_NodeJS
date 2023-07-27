@@ -35,6 +35,7 @@ router.get('/get-by-id', async (req, res, next) => {
 router.get('/get-by-current-day', async (req, res, next) => {
     try {
         const { currentDay } = req.query;
+        console.log("currentDay",currentDay);
         const scheduleStudy = await scheduleStudyController.getByCurrentDay(currentDay);
         if (scheduleStudy) {
             return res.status(200).json({ result: true, scheduleStudy: scheduleStudy, message: "Success" });
@@ -49,6 +50,7 @@ router.get('/get-by-current-day', async (req, res, next) => {
 router.get('/get-by-7-day', async (req, res, next) => {
     try {
         const { currentDay } = req.query;
+        console.log(currentDay);
         const scheduleStudy = await scheduleStudyController.getBy7Day(currentDay);
         if (scheduleStudy) {
             return res.status(200).json({ result: true, scheduleStudy: scheduleStudy, message: "Success" });
