@@ -1,5 +1,15 @@
 const ScheduleStudyModel = require('./ScheduleStudyModel')
-
+const moment = require('moment');
+const getAll = async () => {
+    try {
+        const res = await ScheduleStudyModel.find()
+        console.log('res>>>>>', res)
+        return ScheduleStudyModel.find()
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
 const addNew = async (idSubject, shift, location, time, date, lesson) => {
     try {
         const SchedulesSubject = {
@@ -42,65 +52,215 @@ const getByCurrentDay = async (currentDay) => {
 
 const getBy7Day = async (currentDay) => {
     try {
-        let yearOfCurrentDay = currentDay.slice(0, 4);
-        let monthOfCurrentDay = currentDay.slice(6, 7);
-        let dayOfCurrentDay = currentDay.slice(8, 10);
-        console.log(dayOfCurrentDay);
-        let next7Day = parseInt(dayOfCurrentDay) + 7;
-        console.log("7 day", next7Day);
-        let maxDate = 31;
-        if (next7Day > 31) {
-            next7Day === 31
-            monthOfCurrentDay++
-            if (monthOfCurrentDay < 10) {
-                monthOfCurrentDay = "0" + monthOfCurrentDay;
-                let the7DayAgo = yearOfCurrentDay + "-" + monthOfCurrentDay + "-" + 31
-                console.log(the7DayAgo);
-
+        let startDate = moment(currentDay, "YYYY-MM-DD");
+        let endDate = moment(startDate).add(7, 'days');
+        if (endDate.date() > 31) {
+            if (endDate.month() > 12) {
+                endDate.add(1, 'years');
+                endDate.add(1, 'months');
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
             } else {
-                let the7DayAgo = yearOfCurrentDay + "-" + monthOfCurrentDay + "-" + 31
-                console.log(the7DayAgo, "+++++++++++", monthOfCurrentDay);
-
+                console.log(startDate, endDate);
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
             }
-
-            return true
-
         } else {
-            let the7DayAgo = yearOfCurrentDay + "-" + monthOfCurrentDay + "-"+next7Day
-            console.log(the7DayAgo,"b");
-            return false
+            const schedules = await ScheduleStudyModel.find({
+                date: {
+                    $gte: startDate,
+                    $lte: endDate,
+                },
+            });
+            console.log(schedules.length);
+            return schedules;
         }
-
-        // const startDate = currentDay + 'T00:00:00.000Z';
-        // const endDate = month + '-31T23:59:59.999Z';
-        // const transactions = await ScheduleStudyModel.find({
-        //     createAt: {
-        //         $gte: startDate,
-        //         $lte: endDate,
-        //     },
-        // });
-        // return transactions
-
-        const SchedulesSubject = await ScheduleStudyModel.find({ date: currentDay });
-        if (SchedulesSubject.length === 0) {
-            return false
-        }
-        return SchedulesSubject
     } catch (error) {
         console.log('error: ', error);
         return false;
     }
 }
-const getAll = async () => {
+const getBy14Day = async (currentDay) => {
     try {
-        const res = await ScheduleStudyModel.find()
-        console.log('res>>>>>', res)
-        return ScheduleStudyModel.find()
+        let startDate = moment(currentDay, "YYYY-MM-DD");
+        let endDate = moment(startDate).add(14, 'days');
+        if (endDate.date() > 31) {
+            if (endDate.month() > 12) {
+                endDate.add(1, 'years');
+                endDate.add(1, 'months');
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            } else {
+                console.log(startDate, endDate);
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            }
+        } else {
+            const schedules = await ScheduleStudyModel.find({
+                date: {
+                    $gte: startDate,
+                    $lte: endDate,
+                },
+            });
+            console.log(schedules.length);
+            return schedules;
+        }
     } catch (error) {
         console.log('error: ', error);
         return false;
     }
 }
+const getBy30Day = async (currentDay) => {
+    try {
+        let startDate = moment(currentDay, "YYYY-MM-DD");
+        let endDate = moment(startDate).add(30, 'days');
+        if (endDate.date() > 31) {
+            if (endDate.month() > 12) {
+                endDate.add(1, 'years');
+                endDate.add(1, 'months');
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            } else {
+                console.log(startDate, endDate);
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            }
+        } else {
+            const schedules = await ScheduleStudyModel.find({
+                date: {
+                    $gte: startDate,
+                    $lte: endDate,
+                },
+            });
+            console.log(schedules.length);
+            return schedules;
+        }
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
+const getBy60Day = async (currentDay) => {
+    try {
+        let startDate = moment(currentDay, "YYYY-MM-DD");
+        let endDate = moment(startDate).add(60, 'days');
+        if (endDate.date() > 31) {
+            if (endDate.month() > 12) {
+                endDate.add(1, 'years');
+                endDate.add(1, 'months');
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            } else {
+                console.log(startDate, endDate);
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            }
+        } else {
+            const schedules = await ScheduleStudyModel.find({
+                date: {
+                    $gte: startDate,
+                    $lte: endDate,
+                },
+            });
+            console.log(schedules.length);
+            return schedules;
+        }
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
+const getBy90Day = async (currentDay) => {
+    try {
+        let startDate = moment(currentDay, "YYYY-MM-DD");
+        let endDate = moment(startDate).add(90, 'days');
+        if (endDate.date() > 31) {
+            if (endDate.month() > 12) {
+                endDate.add(1, 'years');
+                endDate.add(1, 'months');
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            } else {
+                console.log(startDate, endDate);
+                const schedules = await ScheduleStudyModel.find({
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                });
+                console.log(schedules.length);
+                return schedules;
+            }
+        } else {
+            const schedules = await ScheduleStudyModel.find({
+                date: {
+                    $gte: startDate,
+                    $lte: endDate,
+                },
+            });
+            console.log(schedules.length);
+            return schedules;
+        }
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
+
 const deleteById = async (id) => {
     try {
         return ScheduleStudyModel.findOneAndDelete({ _id: id })
@@ -131,5 +291,6 @@ const updateById = async (id, idSubject, shift, location, time, date, lesson) =>
 
 module.exports = {
     addNew, getById, getAll, deleteById,
-    updateById, getByCurrentDay, getBy7Day
+    updateById, getByCurrentDay, getBy7Day,
+    getBy14Day, getBy30Day, getBy60Day, getBy90Day,
 }
