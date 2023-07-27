@@ -6,7 +6,10 @@ const newsSchema = new Schema({
     id: { type: ObjectId },
     title: { type: String, require: true },
     content: { type: String, require: true },
-    date: { type: Date, default: Date.now }
+    author: { type: String, require: true },
+    date: { type: Date, default: Date.now },
+    image: { type: String, require: true },
+
 
 });
 

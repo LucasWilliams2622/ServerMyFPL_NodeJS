@@ -1,9 +1,9 @@
 const newsModel = require('./NewsModel')
 
-const addNew = async (title, content, date) => {
+const addNew = async (title, content, author, date, image) => {
     try {
         const news = {
-            title, content, date
+            title, content, author, date, image
         }
         const p = new newsModel(news);
         await p.save();
@@ -25,7 +25,7 @@ const getById = async (id) => {
 const getByTitle = async (title) => {
     try {
 
-        const news =await newsModel.find({ title: { $regex: title, $options: 'i' }, });
+        const news = await newsModel.find({ title: { $regex: title, $options: 'i' }, });
         if (news.length === 0) {
             return false
         }
@@ -36,9 +36,9 @@ const getByTitle = async (title) => {
     }
 }
 
-const getAll = async () => {
+const getAll = async (createAt) => {
     try {
-        return newsModel.find()
+        return newsModel.find().skip(0).sort({content:-1})
     } catch (error) {
         console.log('error: ', error);
         return false;
@@ -52,12 +52,13 @@ const deleteById = async (id) => {
         return false;
     }
 }
-const updateById = async (id, title, content, date) => {
+const updateById = async (id, title, content, author, date) => {
     try {
         const news = await newsModel.findById(id)
         if (news) {
             news.title = title ? title : news.title;
             news.content = content ? content : news.content;
+            news.author = author ? author : news.author;
             news.date = date ? date : news.date;
             await news.save();
             return true;
@@ -70,5 +71,5 @@ const updateById = async (id, title, content, date) => {
 
 module.exports = {
     addNew, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById, getByTitle,
 }
