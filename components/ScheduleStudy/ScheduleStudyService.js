@@ -93,7 +93,7 @@ const getBy7Day = async (currentDay) => {
 }
 const getAll = async () => {
     try {
-        const res = await ScheduleStudyModel.find()
+        const res = await ScheduleStudyModel.find().populate('idSubject', 'nameSubject codeSubject instructor');
         console.log('res>>>>>', res)
         return ScheduleStudyModel.find()
     } catch (error) {

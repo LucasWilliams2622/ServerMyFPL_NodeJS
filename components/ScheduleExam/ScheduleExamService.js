@@ -1,11 +1,9 @@
 const ScheduleExamModel = require('./ScheduleExamModel')
 
-const addSchedule = async (subject, location, shift, date) => {
+const addSchedule = async (subject, location, shift, date,time) => {
     try {
-        const schedules = {
-            subject, location, shift,date
-        }
-        const p = new ScheduleExamModel(schedules);
+        const scheduleExam = {subject, location, shift,date,time}
+        const p = new ScheduleExamModel(scheduleExam);
         await p.save();
         return true;
     } catch (error) {

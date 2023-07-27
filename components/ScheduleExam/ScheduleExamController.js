@@ -1,8 +1,8 @@
 const ScheduleExamService = require('./ScheduleExamService');
 
-const addSchedule = async (subject,location,shift,date) => {
+const addSchedule = async (idSubject,location,shift,date,time) => {
     try {
-        return await ScheduleExamService.addSchedule(subject, location, shift,date);
+        return await ScheduleExamService.addSchedule(idSubject, location, shift,date,time);
     } catch (error) {
         return false;
     }
@@ -57,6 +57,6 @@ const getBy14Day = async (currentDay) => {
     }
 }
 module.exports = {
-    scheduleExam: addSchedule, getById, getAll, deleteById,
+    addSchedule, getById, getAll, deleteById,
     updateById,getBysubject,getBy7Day,getBy14Day
 };

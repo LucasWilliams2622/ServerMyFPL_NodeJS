@@ -149,11 +149,11 @@ router.get('/get-by-14-day', async (req, res, next) => {
     }
 });
 
-//http://localhost:3000/scheduleExam/api/add-new
+//http://localhost:3000/scheduleExam/api/add-schedule-exam
 router.post('/add-schedule-exam', async (req, res, next) => {
     try {
-        const { idSubject, location, shift, date } = req.body;
-        const scheduleExam = await scheduleExamController.scheduleExam(idSubject,location,shift,date);
+        const { subject, location, shift, date, time } = req.body;
+        const scheduleExam = await scheduleExamController.addSchedule(subject,location,shift,date,time);
         if (scheduleExam) {
             return res.status(200).json({ result: true, scheduleExam: scheduleExam, message: "Add scheduleExam Success" });
         }
@@ -167,10 +167,10 @@ router.post('/add-schedule-exam', async (req, res, next) => {
 router.put('/update-by-id', async (req, res, next) => {
     try {
         const { id } = req.query;
-        const { idSubject, location, shift, date } = req.body;
+        const { idSubject, location, shift, date,time } = req.body;
 
         console.log(id);
-        const scheduleExam = await scheduleExamController.updateById(id,idSubject,location,shift,date);
+        const scheduleExam = await scheduleExamController.updateById(id,idSubject,location,shift,date,time);
         if (scheduleExam) {
             return res.status(200).json({ result: true, message: "Success" });
         }
