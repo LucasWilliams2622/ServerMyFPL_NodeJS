@@ -56,7 +56,28 @@ const getBy14Day = async (currentDay) => {
         return false;
     }
 }
+const getBy30Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy30Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
+const getBy60Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy60Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
+const getBy90Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy90Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
 module.exports = {
     addSchedule, getById, getAll, deleteById,
-    updateById,getBysubject,getBy7Day,getBy14Day
+    updateById,getBysubject,getBy7Day,getBy14Day,getBy30Day,getBy60Day,getBy90Day
 };

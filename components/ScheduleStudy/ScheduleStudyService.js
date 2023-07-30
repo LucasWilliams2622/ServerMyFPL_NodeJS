@@ -96,11 +96,11 @@ const getBy7Day = async (currentDay) => {
 }
 const getBy14Day = async (currentDay) => {
     try {
-<<<<<<< HEAD
-        const res = await ScheduleStudyModel.find().populate('idSubject', 'nameSubject codeSubject instructor');
-        console.log('res>>>>>', res)
-        return ScheduleStudyModel.find()
-=======
+// <<<<<<< HEAD
+        // const res = await ScheduleStudyModel.find().populate('idSubject', 'nameSubject codeSubject instructor');
+        // console.log('res>>>>>', res)
+        // return ScheduleStudyModel.find()
+// =======
         let startDate = moment(currentDay, "YYYY-MM-DD");
         let endDate = moment(startDate).add(14, 'days');
         if (endDate.date() > 31) {
@@ -136,7 +136,7 @@ const getBy14Day = async (currentDay) => {
             console.log(schedules.length);
             return schedules;
         }
->>>>>>> master
+// >>>>>>> master
     } catch (error) {
         console.log('error: ', error);
         return false;
