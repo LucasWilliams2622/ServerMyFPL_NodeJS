@@ -97,7 +97,9 @@ const getBy7Day = async (currentDay) => {
 }
 const getBy14Day = async (currentDay) => {
     try {
+
         let nextDate = moment(currentDay).add(1, 'days');
+
         let startDate = moment(currentDay, "YYYY-MM-DD");
         let endDate = moment(nextDate).add(14, 'days');
         if (endDate.date() > 31) {
@@ -133,7 +135,7 @@ const getBy14Day = async (currentDay) => {
             console.log(schedules.length);
             return schedules;
         }
-        // >>>>>>> master
+
     } catch (error) {
         console.log('error: ', error);
         return false;
