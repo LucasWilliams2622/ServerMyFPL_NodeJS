@@ -1,8 +1,8 @@
 const ScheduleExamService = require('./ScheduleExamService');
 
-const addSchedule = async (subject,location,shift,date) => {
+const addSchedule = async (idSubject,location,shift,date,time) => {
     try {
-        return await ScheduleExamService.addSchedule(subject, location, shift,date);
+        return await ScheduleExamService.addSchedule(idSubject, location, shift,date,time);
     } catch (error) {
         return false;
     }
@@ -42,6 +42,13 @@ const getBysubject = async (subject) => {
         return false;
     }
 }
+const getByCurrentDay = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getByCurrentDay(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
 const getBy7Day = async (currentDay) => {
     try {
         return await ScheduleExamService.getBy7Day(currentDay);
@@ -56,7 +63,28 @@ const getBy14Day = async (currentDay) => {
         return false;
     }
 }
+const getBy30Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy30Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
+const getBy60Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy60Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
+const getBy90Day = async (currentDay) => {
+    try {
+        return await ScheduleExamService.getBy90Day(currentDay);
+    } catch (error) {
+        return false;
+    }
+}
 module.exports = {
-    scheduleExam: addSchedule, getById, getAll, deleteById,
-    updateById,getBysubject,getBy7Day,getBy14Day
+    addSchedule, getById, getAll, deleteById,
+    updateById,getBysubject,getByCurrentDay,getBy7Day,getBy14Day,getBy30Day,getBy60Day,getBy90Day
 };

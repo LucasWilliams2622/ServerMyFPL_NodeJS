@@ -1,11 +1,11 @@
-const newsModel = require('./NewsModel')
+const categoryMode = require('./CategoryModel')
 
-const addNew = async (typeCategory,title, content, author, date, image) => {
+const addNew = async (name) => {
     try {
         const news = {
-            typeCategory,title, content, author, date, image
+            name
         }
-        const p = new newsModel(news);
+        const p = new categoryMode(news);
         await p.save();
         return true;
     } catch (error) {
@@ -16,7 +16,7 @@ const addNew = async (typeCategory,title, content, author, date, image) => {
 const getById = async (id) => {
     try {
 
-        return newsModel.findById(id);
+        return categoryMode.findById(id);
     } catch (error) {
         console.log('error: ', error);
         return false;
@@ -25,7 +25,7 @@ const getById = async (id) => {
 const getByTitle = async (title) => {
     try {
 
-        const news = await newsModel.find({ title: { $regex: title, $options: 'i' }, });
+        const news = await categoryMode.find({ title: { $regex: title, $options: 'i' }, });
         if (news.length === 0) {
             return false
         }
@@ -38,7 +38,7 @@ const getByTitle = async (title) => {
 
 const getAll = async (createAt) => {
     try {
-        return newsModel.find().skip(0).sort({content:-1})
+        return categoryMode.find().skip(0).sort({content:-1})
     } catch (error) {
         console.log('error: ', error);
         return false;
@@ -46,21 +46,17 @@ const getAll = async (createAt) => {
 }
 const deleteById = async (id) => {
     try {
-        return newsModel.findOneAndDelete({ _id: id })
+        return categoryMode.findOneAndDelete({ _id: id })
     } catch (error) {
         console.log('error: ', error);
         return false;
     }
 }
-const updateById = async (id, title, content, author, date,typeCategory) => {
+const updateById = async (id, name) => {
     try {
-        const news = await newsModel.findById(id)
+        const news = await categoryMode.findById(id)
         if (news) {
-            news.typeCategory = typeCategory ? typeCategory : news.typeCategory;
-            news.title = title ? title : news.title;
-            news.content = content ? content : news.content;
-            news.author = author ? author : news.author;
-            news.date = date ? date : news.date;
+            news.name = name ? name : news.name;
             await news.save();
             return true;
         }

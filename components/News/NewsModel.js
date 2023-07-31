@@ -4,6 +4,7 @@ const ObjectId = Schema.ObjectId;
 
 const newsSchema = new Schema({
     id: { type: ObjectId },
+    typeCategory:{type:ObjectId, ref:"Category"},
     title: { type: String, require: true },
     content: { type: String, require: true },
     author: { type: String, require: true },

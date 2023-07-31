@@ -1,43 +1,43 @@
-const newsService = require('./NewsService');
+const categoryService = require('./CategoryService');
 
-const addNew = async (typeCategory,title, content,author, date,image) => {
+const addNew = async (name) => {
     try {
-        return await newsService.addNew(typeCategory,title, content,author, date,image);
+        return await categoryService.addNew(name);
     } catch (error) {
         return false;
     }
 }
 const getById = async (id) => {
     try {
-        return await newsService.getById(id);
+        return await categoryService.getById(id);
     } catch (error) {
         return false;
     }
 }
 const getAll = async (createAt) => {
     try {
-        return await newsService.getAll(createAt);
+        return await categoryService.getAll(createAt);
     } catch (error) {
         return false;
     }
 }
 const deleteById = async (id) => {
     try {
-        return await newsService.deleteById(id);
+        return await categoryService.deleteById(id);
     } catch (error) {
         return false;
     }
 }
-const updateById = async (typeCategory,id,title,content,author,date) => {
+const updateById = async (id,name) => {
     try {
-        return await newsService.updateById(typeCategory,id,title,content,author,date);
+        return await categoryService.updateById(id,name);
     } catch (error) {
         return false;
     }
 }
 const getByTitle = async (title) => {
     try {
-        return await newsService.getByTitle(title);
+        return await categoryService.getByTitle(title);
     } catch (error) {
         return false;
     }
