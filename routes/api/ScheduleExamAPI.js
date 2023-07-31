@@ -33,7 +33,8 @@ router.get('/get-by-id', async (req, res, next) => {
 //http://localhost:3000/scheduleExam/api/get-by-current-day
 router.get('/get-by-current-day', async (req, res, next) => {
     try {
-        const { currentDay } = req.query;
+        const { currentDay } = req.query;        
+        console.log("currentDay",currentDay);
         const scheduleExam = await scheduleExamController.getByCurrentDay(currentDay);
         if (scheduleExam) {
             return res.status(200).json({ result: true, scheduleExam: scheduleExam, message: "Success" });

@@ -11,10 +11,11 @@ router.post('/add-new', [upLoadImage.single('image')], async (req, res, next) =>
         if (file) {
             file = `http://10.0.2.2:3000/images/${file.filename}`;
             body = { ...body, image: file };
+            console.log("link upload hình:", file);
         }
-        const { title, content,author, date ,image} = req.body;
-        console.log("++++>",title, content,author, date ,image);
-        const news = await newsController.addNew(title, content,author, date,image);
+        const { typeCategory,title, content,author, date ,image = file} = req.body;
+        console.log("++++>",typeCategory,title, content,author, date ,image);
+        const news = await newsController.addNew(typeCategory, title, content,author, date,image);
         if (news) {
             return res.status(200).json({ result: true, news: news, message: "Add New Success" });
         }

@@ -69,17 +69,39 @@ const updateById = async (id, subject, location, shift, date) => {
     }
 }
 
+const getByCurrentDay = async (currentDay) => {
+    try {
+        const startDate = currentDay + 'T00:00:00.000Z';
+        const endDate = currentDay + 'T23:59:59.999Z';
+        console.log(startDate);
+        console.log(endDate);
+
+        return await ScheduleExamModel.find({
+            date: {
+                $gte: startDate,
+                $lte: endDate,
+            },
+        }).populate('idSubject shift location time date', 'nameSubject codeSubject instructor');
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
+
+
 const getBy7Day = async (currentDay) => {
     try {
+
+        let nextDate = moment(currentDay).add(1, 'days');
         let startDate = moment(currentDay, "YYYY-MM-DD");
-        let endDate = moment(startDate).add(7, 'days');
+        let endDate = moment(nextDate).add(7, 'days');
         if (endDate.date() > 31) {
             if (endDate.month() > 12) {
                 endDate.add(1, 'years');
                 endDate.add(1, 'months');
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
@@ -89,7 +111,7 @@ const getBy7Day = async (currentDay) => {
                 console.log(startDate, endDate);
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date ', 'nameSubject codeSubject instructor');;
@@ -99,7 +121,7 @@ const getBy7Day = async (currentDay) => {
         } else {
             const schedules = await ScheduleExamModel.find({
                 date: {
-                    $gte: startDate,
+                    $gte: nextDate,
                     $lte: endDate,
                 },
             }).populate('idSubject shift location time date', 'nameSubject codeSubject instructor');;
@@ -114,15 +136,16 @@ const getBy7Day = async (currentDay) => {
 
 const getBy14Day = async (currentDay) => {
     try {
+        let nextDate = moment(currentDay).add(1, 'days');
         let startDate = moment(currentDay, "YYYY-MM-DD");
-        let endDate = moment(startDate).add(14, 'days');
+        let endDate = moment(nextDate).add(14, 'days');
         if (endDate.date() > 31) {
             if (endDate.month() > 12) {
                 endDate.add(1, 'years');
                 endDate.add(1, 'months');
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
@@ -132,7 +155,7 @@ const getBy14Day = async (currentDay) => {
                 console.log(startDate, endDate);
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -142,7 +165,7 @@ const getBy14Day = async (currentDay) => {
         } else {
             const schedules = await ScheduleExamModel.find({
                 date: {
-                    $gte: startDate,
+                    $gte: nextDate,
                     $lte: endDate,
                 },
             }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -156,15 +179,16 @@ const getBy14Day = async (currentDay) => {
 }
 const getBy30Day = async (currentDay) => {
     try {
+        let nextDate = moment(currentDay).add(1, 'days');
         let startDate = moment(currentDay, "YYYY-MM-DD");
-        let endDate = moment(startDate).add(30, 'days');
+        let endDate = moment(nextDate).add(30, 'days');
         if (endDate.date() > 31) {
             if (endDate.month() > 12) {
                 endDate.add(1, 'years');
                 endDate.add(1, 'months');
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
@@ -174,7 +198,7 @@ const getBy30Day = async (currentDay) => {
                 console.log(startDate, endDate);
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -184,7 +208,7 @@ const getBy30Day = async (currentDay) => {
         } else {
             const schedules = await ScheduleExamModel.find({
                 date: {
-                    $gte: startDate,
+                    $gte: nextDate,
                     $lte: endDate,
                 },
             }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -199,15 +223,16 @@ const getBy30Day = async (currentDay) => {
 
 const getBy60Day = async (currentDay) => {
     try {
+        let nextDate = moment(currentDay).add(1, 'days');
         let startDate = moment(currentDay, "YYYY-MM-DD");
-        let endDate = moment(startDate).add(60, 'days');
+        let endDate = moment(nextDate).add(60, 'days');
         if (endDate.date() > 31) {
             if (endDate.month() > 12) {
                 endDate.add(1, 'years');
                 endDate.add(1, 'months');
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
@@ -217,7 +242,7 @@ const getBy60Day = async (currentDay) => {
                 console.log(startDate, endDate);
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -227,7 +252,7 @@ const getBy60Day = async (currentDay) => {
         } else {
             const schedules = await ScheduleExamModel.find({
                 date: {
-                    $gte: startDate,
+                    $gte: nextDate,
                     $lte: endDate,
                 },
             }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -242,15 +267,16 @@ const getBy60Day = async (currentDay) => {
 
 const getBy90Day = async (currentDay) => {
     try {
+        let nextDate = moment(currentDay).add(1, 'days');
         let startDate = moment(currentDay, "YYYY-MM-DD");
-        let endDate = moment(startDate).add(90, 'days');
+        let endDate = moment(nextDate).add(90, 'days');
         if (endDate.date() > 31) {
             if (endDate.month() > 12) {
                 endDate.add(1, 'years');
                 endDate.add(1, 'months');
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');
@@ -260,7 +286,7 @@ const getBy90Day = async (currentDay) => {
                 console.log(startDate, endDate);
                 const schedules = await ScheduleExamModel.find({
                     date: {
-                        $gte: startDate,
+                        $gte: nextDate,
                         $lte: endDate,
                     },
                 }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -270,7 +296,7 @@ const getBy90Day = async (currentDay) => {
         } else {
             const schedules = await ScheduleExamModel.find({
                 date: {
-                    $gte: startDate,
+                    $gte: nextDate,
                     $lte: endDate,
                 },
             }).populate('idSubject shift location time date lesson', 'nameSubject codeSubject instructor');;
@@ -284,5 +310,5 @@ const getBy90Day = async (currentDay) => {
 }
 module.exports = {
     addSchedule, getById, getAll, deleteById,
-    updateById,getBysubject,getBy7Day,getBy14Day,getBy30Day,getBy60Day,getBy90Day
+    updateById,getBysubject,getByCurrentDay,getBy7Day,getBy14Day,getBy30Day,getBy60Day,getBy90Day
 }
