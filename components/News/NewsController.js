@@ -21,6 +21,14 @@ const getAll = async (createAt) => {
         return false;
     }
 }
+
+const getSearchByCategory = async(id) =>{
+    try {
+        return await newsService.getSearchByCategory(id);
+    } catch (error) {
+        return false;
+    }
+}
 const deleteById = async (id) => {
     try {
         return await newsService.deleteById(id);
@@ -44,5 +52,5 @@ const getByTitle = async (title) => {
 }
 module.exports = {
     addNew, getById, getAll, deleteById,
-    updateById,getByTitle,
+    updateById,getByTitle,getSearchByCategory
 };
