@@ -96,6 +96,7 @@ const getBy7Day = async (currentDay) => {
 }
 const getBy14Day = async (currentDay) => {
     try {
+
         let startDate = moment(currentDay, "YYYY-MM-DD");
         let endDate = moment(startDate).add(14, 'days');
         if (endDate.date() > 31) {
