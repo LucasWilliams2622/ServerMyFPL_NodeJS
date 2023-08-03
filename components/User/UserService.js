@@ -40,7 +40,7 @@ const loginGoogle = async (email, name, avatar) => {
 //http://localhost:3000/api/user/register
 const register = async (email, password, name, studentCode, avatar, role, createAt, updateAt,  isActive, isVerified) => {
     try {
-        // console.log("QQQQ", email, password, name, avatar, studentCode, role, createAt, updateAt,  isActive, isVerified)
+        console.log("QQQQ", email, password, name, avatar, studentCode, role, createAt, updateAt,  isActive, isVerified)
         const user = await UserModel.findOne({ email: email })
         // console.log("userrrr", user)
         if (user == null) {
