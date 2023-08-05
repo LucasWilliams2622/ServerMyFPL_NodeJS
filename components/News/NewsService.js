@@ -44,6 +44,16 @@ const getAll = async (createAt) => {
         return false;
     }
 }
+
+const getSearchByCategory = async (id) => {
+    try {
+
+        return newsModel.find({typeCategory:id},'title author content date image typeCategory').populate("typeCategory","name")
+    } catch (error) {
+        console.log('error: ', error);
+        return false;
+    }
+}
 const deleteById = async (id) => {
     try {
         return newsModel.findOneAndDelete({ _id: id })
@@ -72,5 +82,5 @@ const updateById = async (id, title, content, author, date,typeCategory) => {
 
 module.exports = {
     addNew, getById, getAll, deleteById,
-    updateById, getByTitle,
+    updateById, getByTitle,getSearchByCategory
 }

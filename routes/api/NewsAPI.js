@@ -63,6 +63,22 @@ router.get('/get-all', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
+//http://localhost:3000/news/api/search-by-category
+router.get('/search-by-category', async (req, res, next) => {
+    try {
+        const {id}=req.query;
+        const news = await newsController.getSearchByCategory(id)
+        if (news) {
+            return res.status(200).json({ result: true, news: news, message: "Success" });
+        }
+        return res.status(400).json({ result: false, news: null, message: "Failed" });
+    } catch (error) {
+        return res.status(500).json({ result: false, message: 'Error System' })
+    }
+});
+
+//
 //http://localhost:3000/news/api/delete-by-id
 router.delete('/delete-by-id', async (req, res, next) => {
     try {
