@@ -77,6 +77,8 @@ router.get('/search-by-category', async (req, res, next) => {
         return res.status(500).json({ result: false, message: 'Error System' })
     }
 });
+
+//
 //http://localhost:3000/news/api/delete-by-id
 router.delete('/delete-by-id', async (req, res, next) => {
     try {
