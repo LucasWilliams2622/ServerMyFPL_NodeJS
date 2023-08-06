@@ -158,9 +158,21 @@ const getById = async (id) => {
         return null;
     }
 }
+const getByStudentCode = async (studentCode) => {
+    try {
+        console.log(studentCode);
 
+        const user = await UserModel.findById({ studentCode: studentCode });
+        if (user != null) {
+            return user
+        } return false
+    } catch (error) {
+        console.log("Get product by id error " + error);
+        return null;
+    }
+}
 module.exports = {
     login, register, deleteUser, loginGoogle,
     updateUser, getAllUser, search, changePassword,
-    getById,
+    getById,getByStudentCode,
 };
