@@ -75,15 +75,19 @@ router.get('/get-by-id/', async (req, res, next) => {
         return res.status(500).json({ result: false, product: null });
     }
 });
-// http://localhost:3001/user/api/get-by-studentCode/
-router.get('/get-by-studentCode/', async (req, res, next) => {
+// http://localhost:3001/user/api/get-by-studentCode
+router.get('/get-by-studentCode', async (req, res, next) => {
     try {
+
         const { studentCode } = req.query;
         console.log(studentCode);
+
         const user = await userController.getByStudentCode(studentCode);
         if (user) {
             return res.status(200).json({ result: true, user: user, error: false });
         }
+        console.log(studentCode);
+
         return res.status(400).json({ result: false, user: null, error: true });
 
     } catch (error) {

@@ -160,10 +160,11 @@ const getById = async (id) => {
 }
 const getByStudentCode = async (studentCode) => {
     try {
-        console.log(studentCode);
+        console.log("studentCode",studentCode);
 
-        const user = await UserModel.findById({ studentCode: studentCode });
+        const user = await UserModel.find({ studentCode: studentCode });
         if (user != null) {
+            console.log("===========>",user);
             return user
         } return false
     } catch (error) {
