@@ -34,7 +34,8 @@ let ChatAPIRouter = require('./routes/api/ChatAPI')
 //http://localhost:3000/message/api
 let MessageAPIRouter = require('./routes/api/MessageAPI')
 
-
+//http://localhost:3000/category/api
+let PhoneAPIRouter = require('./routes/api/PhoneAPI')
 
 // CPANEL
 
@@ -76,6 +77,8 @@ app.use('/chat/api',ChatAPIRouter)
 app.use('/message/api',MessageAPIRouter)
 
 
+// http://localhost:3000/phone/api
+app.use('/phone/api',PhoneAPIRouter)
 
 
 
