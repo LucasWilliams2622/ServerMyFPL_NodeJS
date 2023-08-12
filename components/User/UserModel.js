@@ -11,7 +11,7 @@ var datetime = currentdate.getDate() + "/"
 
 const userSchema = new Schema({
   id: { type: ObjectId },
-  name: { type: String, },
+  name: { type: String, require:true},
   email: { type: String, default: "", unique: true },
   password: { type: String, default: "123456abc" },
 

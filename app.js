@@ -28,6 +28,13 @@ let ScheduleExamAPIRouter = require('./routes/api/ScheduleExamAPI')
 //http://localhost:3000/category/api
 let CategoryAPIRouter = require('./routes/api/CategoryAPI')
 
+//http://localhost:3000/chat/api
+let ChatAPIRouter = require('./routes/api/ChatAPI')
+
+//http://localhost:3000/message/api
+let MessageAPIRouter = require('./routes/api/MessageAPI')
+
+
 
 // CPANEL
 
@@ -61,6 +68,18 @@ app.use('/subject/api',SubjectAPIRouter)
 
 // http://localhost:3000/category/api
 app.use('/category/api',CategoryAPIRouter)
+
+// http://localhost:3000/chat/api
+app.use('/chat/api',ChatAPIRouter)
+
+// http://localhost:3000/message/api
+app.use('/message/api',MessageAPIRouter)
+
+
+
+
+
+
 
 //C Panel
 //http:localhost:3000/users

@@ -53,7 +53,7 @@ router.post('/register', [], async (req, res, next) => {
 
         if (user) {
             // await userController.sendMailForNewAccount(email);
-            return res.status(200).json({ result: true, user: user, message: "Register Success" });
+            return res.status(200).json({ result: true, user: user, message: "Register Success", });
         }
         return res.status(400).json({ result: false, user: null, message: "Register Failed" });
     } catch (error) {
