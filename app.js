@@ -25,6 +25,9 @@ let ScheduleStudyAPIRouter = require('./routes/api/ScheduleStudyAPI')
 //http://localhost:3000/scheduleExam/api
 let ScheduleExamAPIRouter = require('./routes/api/ScheduleExamAPI')
 
+//
+let PhoneAPIRouter = require('./routes/api/PhoneAPI')
+
 //http://localhost:3000/category/api
 let CategoryAPIRouter = require('./routes/api/CategoryAPI')
 
@@ -62,6 +65,9 @@ app.use('/scheduleStudy/api', ScheduleStudyAPIRouter);
 
 //http://localhost:3000/scheduleExam/api
 app.use('/scheduleExam/api', ScheduleExamAPIRouter);
+
+//http://localhost:3000/scheduleExam/api
+app.use('/phones/api', PhoneAPIRouter);
 
 // http://localhost:3000/subject/api
 app.use('/subject/api',SubjectAPIRouter)
