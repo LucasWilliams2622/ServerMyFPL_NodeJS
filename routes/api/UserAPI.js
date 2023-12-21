@@ -27,7 +27,7 @@ router.post('/login', async (req, res, next) => {
             .json({ result: false, message: 'Error System' })
     }
 })
-//http://localhost:3000/user/api/loginGoogle
+//http://localhost:3000/user/api/loginGooglenpm run 
 router.post('/loginGoogle', async (req, res, next) => {
     try {
         const { email, name, avatar } = req.body;
