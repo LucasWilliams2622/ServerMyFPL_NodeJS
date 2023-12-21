@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const login = async (email, password) => {
     try {
         const user = await UserModel.findOne({ email: email })
+        console.log("Login",user);
         if (user) {
             const result = bcrypt.compareSync(password, user.password);
             return result ? user : false;
@@ -162,7 +163,7 @@ const getByStudentCode = async (studentCode) => {
     try {
         console.log("studentCode",studentCode);
 
-        const user = await UserModel.find({ studentCode: studentCode });
+        const user = await UserModel.findOne({ studentCode: studentCode });
         if (user != null) {
             console.log("===========>",user);
             return user

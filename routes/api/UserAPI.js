@@ -4,13 +4,13 @@ const upLoadImage = require("../../MiddleWare/UpLoadImage")
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const userController = require('../../components/User/UserController')
-//http://localhost:3000/user/api/login
+//http://103.57.129.166/user/api/login
 router.post('/login', async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password)
+        console.log("=------------>",email, password)
         const user = await userController.login(email, password);
-        console.log("aaaaaaaaa", user)
+        // console.log("aaaaaaaaa", user)
         if (user) {
             const token = jwt.sign({ user }, 'secret', { expiresIn: '1h' })
             return res.status(200).json({ result: true, user: user, token: token, message: "Login Success" });
@@ -176,7 +176,7 @@ router.post('/upload-avatar', [upLoadImage.single('image')], async (req, res, ne
     try {
         const { file } = req;
         if (file) {
-            const link = `http://10.0.2.2:3000/images/${file.filename}`;
+            const link = `http://103.57.129.166:3000/images/${file.filename}`;
             return res.status(200).json({ result: true, link: link })
         }
         return res.status(400).json({ result: false, link: null })
