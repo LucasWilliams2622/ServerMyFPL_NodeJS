@@ -80,8 +80,7 @@ app.use('/chat/api',ChatAPIRouter)
 app.use('/message/api',MessageAPIRouter)
 
 
-// http://localhost:3000/phone/api
-app.use('/phone/api',PhoneAPIRouter)
+
 
 
 
